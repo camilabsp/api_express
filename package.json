@@ -1,0 +1,19 @@
+{
+  "name": "api_express",
+  "version": "1.0.0",
+  "description": "Este é um projeto de uma API simles para gerenciar um Catálogo de filmes. A API foi desenvolvida utilizando Node.js e o framework Express.",
+  "main": "index.js",
+  "scripts": {
+    "dev":"nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
