@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "titulo": "Som da Liberdade",
+        "categoria": "drama",
+        "duracao": 135,
+        "direcao": "Alejandro Monteverde",
+        "elenco": "Alexandra Lamy - Muriel Robin - Eye Haidara",
+        "sinopse":"",
+        "classificação": 14,
+        "sessoes":["18:00"],
+        "avaliacoes": [],
+        "comentarios":[]
+    },
+    
+    {
+        "id": 2,
+        "titulo": "Hypnotic - Ameaça Invisível",
+        "categoria": "ação",
+        "duracao": 91,
+        "direcao": "Robert Rodriguez",
+        "elenco": "Bem Affleck - Alice Braga - JD Pardo. Hala Finley - Dayo Okeniyi",
+        "sinopse":"",
+        "classificação": 14,
+        "sessoes":["14:30", "18:50", "21:10"],
+        "avaliacoes":[],
+        "comentarios":[]
+    },
+
+    {
+        "id": 3,
+        "titulo": "Trolls 3: Juntos Novamente",
+        "categoria": "animação",
+        "duracao": 92,
+        "direcao": "Walt Dohrn/Tim Heitz",
+        "elenco": "Justin Timberlake, Anna Kendrick, Camila Cabello",
+        "sinopse":"",
+        "classificação": "Livre",
+        "sessoes":["14:40", "16:50", "19:00"],
+        "avaliacoes":[],
+        "comentarios":[]
+    },
+
+    {
+        "id": 4,
+        "titulo": "O exorcista: O Devoto",
+        "categoria": "terror",
+        "duracao": 111,
+        "direcao": "David Gordon Green",
+        "elenco": "Ellen Burstyn - Jennifer Nettles - Ann Dowd - Leslie Odom Jr.",
+        "sinopse":"",
+        "classificação": 16,
+        "sessoes":["19:00", "21:30"],
+        "avaliacoes":[],
+        "comentarios":[]
+    }
+]
