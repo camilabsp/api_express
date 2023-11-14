@@ -27,9 +27,6 @@ app.get('/filmes', (request, response) =>{
     return response.status(200).json(arquivoJson)
 })
 
-app.listen(3000, () => {
-    console.log('A API está funcionando!')
-})
 
 //Permite que os administradores atualizem informações sobre um filme existente no catálogo
 app.put('/filmes/:id', (request, response) => {
@@ -84,3 +81,104 @@ app.post('/filmes/:id/comentario', (request, response) => {
   
      return response.status(201).send('Avaliação adicionada com sucesso.');
    });
+
+//Permite que os usuários publiquem um comentário sobre um filme específico.
+app.post('/filmes/:id/comentario', (request, response) => {
+    const filmeId = parseInt(request.params.id);
+    const comentario = request.body.comentario;
+  
+    // Encontra o filme pelo Id
+    const filme = arquivoJson.find(filme => filme.id === filmeId);
+    
+    //Se não encontrar o Id retorna mensagem de erro
+    if (!filme) {
+      return response.status(404).send('Filme não encontrado.');
+    }
+  
+    // Atribui o comentário ao filme
+    filme.comentarios.push(comentario);
+  
+    return response.status(201).send('Comentário adicionado com sucesso.');
+  });
+
+
+//Visualizar comentários de usuários sobre um filme específico.
+app.get('/filmes/:id/comentarios', (request, response) => {
+    const filmeId = parseInt(request.params.id);
+
+    // Encontra o filme pelo Id
+    const filme = arquivoJson.find(filme => filme.id === filmeId);
+
+    // Se o id não for encontrado, retorna mensagem de erro
+    if (!filme) {
+        return response.status(404).send('Filme não encontrado.');
+    }
+
+    // Se não houver comentários, retorna a mensagem
+    if (filme.comentarios.length === 0) {
+        return response.send('Ainda não há comentários.')
+    }
+
+    // Retorna todos os comentários do filme
+    return response.status(200).json(filme.comentarios);
+
+});
+
+//Visualizar avaliações de usuários sobre um filme específico.
+app.get('/filmes/:id/avaliacoes', (request, response) => {
+    const filmeId = parseInt(request.params.id);
+
+    // Encontra o filme pelo id
+    const filme = arquivoJson.find(filme => filme.id === filmeId);
+
+    // Se o id não for encontrado, retorna mensagem de erro
+    if (!filme) {
+        return response.status(404).send('Filme não encontrado.');
+    }
+
+    // Se não houver avaliações, retorna a mensagem
+    if (filme.avaliacoes.length === 0) {
+        return response.send('Ainda não há avaliações.')
+    }
+
+    // Retorna todas as avaliações do filme
+    return response.status(200).json(filme.avaliacoes);
+
+});
+
+//Permite que os administradores removam filmes do catálogo.
+app.post('/filmes/:id/delete', (request, response) => {
+    const filmeId = parseInt(request.params.id);
+    
+    //Busca o índice(posição) do filme através do id
+    const index = buscaIndiceFilme(filmeId);
+
+    if (index !== -1) {
+        // Remove o filme do catálogo
+        arquivoJson.splice(index, 1);
+        return response.status(200).send('Filme excluído com sucesso!');
+    } else {
+        return response.status(404).send('Filme não encontrado.');
+    }
+});
+
+// Permite que os administradores atualizem informações sobre um filme existente no catálogo.
+app.post('/filmes/:id', (request, response) => {
+    const filmeId = request.params.id;
+    
+    const filmeIndex = arquivoJson.findIndex(filme => filme.id == filmeId);
+
+    // Se o id não existe, envia mensagem de filme não encontrado
+    if (filmeIndex === -1) {
+        return response.status(404).send('Filme não encontrado.');
+    }
+
+    const filmeAtualizado = { ...arquivoJson[filmeIndex], ...request.body };
+    arquivoJson[filmeIndex] = filmeAtualizado;
+
+    return response.status(200).send('Filme atualizado com sucesso!');
+});   
+
+app.listen(3000, () => {
+    console.log('A API está funcionando!')
+})
