@@ -7,6 +7,16 @@ const arquivoJson = require('../dados.json') // arquivo json contendo os filmes
 
 const nodemon = require('nodemon')
 
+//função buscar filme por id
+function buscaFilmePorId(id){
+    return arquivoJson.filter(filme => filme.id == id)
+}
+
+//Essa função retorna o índice(posição) do objeto por id
+function buscaIndiceFilme(id){
+    return arquivoJson.findIndex(filme => filme.id == id)
+}
+
 //rota raiz
 app.get('/', (request, response) =>{
     return response.send('Desenvolvimento de uma Web API que fornece detalhes sobre os filmes em exibição nos cinemas.')
