@@ -177,8 +177,17 @@ app.post('/filmes/:id', (request, response) => {
     arquivoJson[filmeIndex] = filmeAtualizado;
 
     return response.status(200).send('Filme atualizado com sucesso!');
-});   
+});  
 
+//Listagem de filmes em exibição nos cinemas
+app.get('/filmes', (request, response) =>{
+    return response.status(200).json(arquivoJson)
+})
+
+//buscar filme por id (Detalhes de um filme específico)
+app.get('/filmes/:id', (request, response) => {
+    return response.json(buscaFilmePorId(request.params.id))
+})
 app.listen(3000, () => {
     console.log('A API está funcionando!')
 })
