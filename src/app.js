@@ -188,6 +188,12 @@ app.get('/filmes', (request, response) =>{
 app.get('/filmes/:id', (request, response) => {
     return response.json(buscaFilmePorId(request.params.id))
 })
+
+app.post('/filmes', (request, response) => {
+    arquivoJson.push(request.body)
+    return response.status(201).send('Filme cadastrado com sucesso!')
+})
+
 app.listen(3000, () => {
     console.log('A API está funcionando!')
 })
